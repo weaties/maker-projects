@@ -1,0 +1,5 @@
+# Regenerable
+**/print/*.stl
+**/out/*.json
+.DS_Store
+*.sc.bak

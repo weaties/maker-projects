@@ -1,0 +1,9 @@
+{"commands":[
+ {"command":"file.export_3mf","params":{"path":"print/pi5-case-base.3mf","bodies":["Base"],"quality":"fine"}},
+ {"command":"file.export_stl","params":{"path":"print/pi5-case-base.stl","bodies":["Base"],"quality":"fine"}},
+ {"command":"solid.move","params":{"bodies":["Lid"],"axis":[1,0,0],"angle":"180 deg"}},
+ {"command":"solid.move","params":{"bodies":["Lid"],"translate":[0,0,30]}},
+ {"command":"file.export_3mf","params":{"path":"print/pi5-case-lid.3mf","bodies":["Lid"],"quality":"fine"}},
+ {"command":"file.export_stl","params":{"path":"print/pi5-case-lid.stl","bodies":["Lid"],"quality":"fine"}},
+ {"command":"inspect.measure","params":{"bodies":["Lid"]}}
+]}

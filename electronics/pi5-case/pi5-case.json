@@ -1,0 +1,897 @@
+{
+ "commands": [
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "W",
+    "expression": "91 mm",
+    "comment": "outside X: board 85 + 2*clr + 2*wall"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "D",
+    "expression": "62 mm",
+    "comment": "outside Y: board 56 + 2*clr + 2*wall"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "H",
+    "expression": "28 mm",
+    "comment": "base height"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "wall",
+    "expression": "2 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "floor_t",
+    "expression": "2 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "corner_r",
+    "expression": "4 mm"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "name": "BaseOutline"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.rectangle.center",
+    "params": {
+     "center": [
+      0,
+      0
+     ],
+     "corner": [
+      45.5,
+      31
+     ]
+    },
+    "dimensions": {
+     "width": "W",
+     "height": "D"
+    }
+   }
+  },
+  {
+   "command": "sketch.constraint.coincident",
+   "params": {
+    "a": "p5",
+    "b": "origin"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "H",
+    "name": "BaseBlock",
+    "body_name": "Base"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "edges": [
+     [
+      45.5,
+      31,
+      14
+     ],
+     [
+      -45.5,
+      31,
+      14
+     ],
+     [
+      -45.5,
+      -31,
+      14
+     ],
+     [
+      45.5,
+      -31,
+      14
+     ]
+    ],
+    "radius": "corner_r",
+    "name": "BaseCorners"
+   }
+  },
+  {
+   "command": "solid.shell",
+   "params": {
+    "faces": [
+     [
+      0,
+      0,
+      28
+     ]
+    ],
+    "thickness": "wall",
+    "name": "BaseShell"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "standoff_h",
+    "expression": "5 mm",
+    "comment": "board underside clearance (microSD sits under the board)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "pilot_d",
+    "expression": "2.2 mm",
+    "comment": "M2.5 self-tapping pilot"
+   }
+  },
+  {
+   "command": "plastic.boss",
+   "params": {
+    "position": [
+     -39,
+     -24.5,
+     2
+    ],
+    "diameter": 6,
+    "height": "standoff_h",
+    "hole_diameter": "pilot_d",
+    "fillet": 0.8,
+    "name": "Standoff1"
+   }
+  },
+  {
+   "command": "plastic.boss",
+   "params": {
+    "position": [
+     19,
+     -24.5,
+     2
+    ],
+    "diameter": 6,
+    "height": "standoff_h",
+    "hole_diameter": "pilot_d",
+    "fillet": 0.8,
+    "name": "Standoff2"
+   }
+  },
+  {
+   "command": "plastic.boss",
+   "params": {
+    "position": [
+     19,
+     24.5,
+     2
+    ],
+    "diameter": 6,
+    "height": "standoff_h",
+    "hole_diameter": "pilot_d",
+    "fillet": 0.8,
+    "name": "Standoff3"
+   }
+  },
+  {
+   "command": "plastic.boss",
+   "params": {
+    "position": [
+     -39,
+     24.5,
+     2
+    ],
+    "diameter": 6,
+    "height": "standoff_h",
+    "hole_diameter": "pilot_d",
+    "fillet": 0.8,
+    "name": "Standoff4"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "-D/2",
+    "name": "FrontPorts"
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -36.8,
+     -10.3
+    ],
+    "p1": [
+     -25.8,
+     -10.3
+    ],
+    "width": 6.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -22.2,
+     -10.3
+    ],
+    "p1": [
+     -11.2,
+     -10.3
+    ],
+    "width": 6.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -8.8,
+     -10.3
+    ],
+    "p1": [
+     2.2,
+     -10.3
+    ],
+    "width": 6.5
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": 4,
+    "operation": "cut",
+    "name": "FrontPortCut"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "YZ",
+    "offset": "W/2",
+    "name": "EndPorts"
+   }
+  },
+  {
+   "command": "sketch.rectangle.center",
+   "params": {
+    "center": [
+     -17.8,
+     15.35
+    ],
+    "corner": [
+     -9.3,
+     22.6
+    ]
+   }
+  },
+  {
+   "command": "sketch.rectangle.center",
+   "params": {
+    "center": [
+     1.1,
+     16.6
+    ],
+    "corner": [
+     8.6,
+     25.1
+    ]
+   }
+  },
+  {
+   "command": "sketch.rectangle.center",
+   "params": {
+    "center": [
+     19.0,
+     16.6
+    ],
+    "corner": [
+     26.5,
+     25.1
+    ]
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": 4,
+    "direction": "negative",
+    "operation": "cut",
+    "name": "EndPortCut"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "YZ",
+    "offset": "-W/2",
+    "name": "SDSlot"
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -7.0,
+     5.5
+    ],
+    "p1": [
+     7.0,
+     5.5
+    ],
+    "width": 4
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": 4,
+    "operation": "cut",
+    "name": "SDCut"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "name": "FloorVents"
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     -18
+    ],
+    "p1": [
+     10.0,
+     -18
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     -12
+    ],
+    "p1": [
+     10.0,
+     -12
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     -6
+    ],
+    "p1": [
+     10.0,
+     -6
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     0
+    ],
+    "p1": [
+     10.0,
+     0
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     6
+    ],
+    "p1": [
+     10.0,
+     6
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     12
+    ],
+    "p1": [
+     10.0,
+     12
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -30.0,
+     18
+    ],
+    "p1": [
+     10.0,
+     18
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "floor_t + 1",
+    "operation": "cut",
+    "name": "FloorVentCut"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lid_t",
+    "expression": "2 mm",
+    "comment": ""
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lip_clr",
+    "expression": "0.3 mm",
+    "comment": "lid lip to base wall, per side"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lip_w",
+    "expression": "1.5 mm",
+    "comment": ""
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lip_h",
+    "expression": "2.5 mm",
+    "comment": ""
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "offset": "H",
+    "name": "LidOutline"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.rectangle.center",
+    "params": {
+     "center": [
+      0,
+      0
+     ],
+     "corner": [
+      45.5,
+      31
+     ]
+    },
+    "dimensions": {
+     "width": "W",
+     "height": "D"
+    }
+   }
+  },
+  {
+   "command": "sketch.constraint.coincident",
+   "params": {
+    "a": "p5",
+    "b": "origin"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "lid_t",
+    "operation": "new",
+    "body_name": "Lid",
+    "name": "LidPlate"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "edges": [
+     [
+      45.5,
+      31,
+      29
+     ],
+     [
+      -45.5,
+      31,
+      29
+     ],
+     [
+      -45.5,
+      -31,
+      29
+     ],
+     [
+      45.5,
+      -31,
+      29
+     ]
+    ],
+    "radius": "corner_r",
+    "name": "LidCorners"
+   }
+  },
+  {
+   "command": "solid.chamfer",
+   "params": {
+    "edges": [
+     [
+      45.5,
+      0,
+      30
+     ]
+    ],
+    "distance": 0.8,
+    "name": "LidTopChamfer"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "offset": "H",
+    "name": "LipSketch"
+   }
+  },
+  {
+   "command": "sketch.rectangle.rounded",
+   "params": {
+    "p0": [
+     -43.2,
+     -28.7
+    ],
+    "p1": [
+     43.2,
+     28.7
+    ],
+    "radius": 1.7
+   }
+  },
+  {
+   "command": "sketch.rectangle.rounded",
+   "params": {
+    "p0": [
+     -41.7,
+     -27.2
+    ],
+    "p1": [
+     41.7,
+     27.2
+    ],
+    "radius": 0.5
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "lip_h",
+    "direction": "negative",
+    "operation": "join",
+    "targets": [
+     "Lid"
+    ],
+    "name": "Lip"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "offset": "H + lid_t",
+    "name": "LidVents"
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     -20
+    ],
+    "p1": [
+     19.0,
+     -20
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     -15
+    ],
+    "p1": [
+     19.0,
+     -15
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     -10
+    ],
+    "p1": [
+     19.0,
+     -10
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     -5
+    ],
+    "p1": [
+     19.0,
+     -5
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     0
+    ],
+    "p1": [
+     19.0,
+     0
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     5
+    ],
+    "p1": [
+     19.0,
+     5
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -31.0,
+     10
+    ],
+    "p1": [
+     19.0,
+     10
+    ],
+    "width": 2.5
+   }
+  },
+  {
+   "command": "sketch.slot.overall",
+   "params": {
+    "p0": [
+     -36.9,
+     23.25
+    ],
+    "p1": [
+     17.1,
+     23.25
+    ],
+    "width": 6
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "lid_t + 1",
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "Lid"
+    ],
+    "name": "LidVentCut"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XY",
+    "offset": "H + lid_t",
+    "name": "LidLabel"
+   }
+  },
+  {
+   "command": "sketch.text",
+   "params": {
+    "text": "Pi 5",
+    "at": [
+     33,
+     -17
+    ],
+    "height": 8,
+    "font": "Arial",
+    "bold": true,
+    "align": "center"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.emboss",
+   "params": {
+    "sketch": "LidLabel",
+    "depth": 0.6,
+    "mode": "deboss",
+    "targets": [
+     "Lid"
+    ],
+    "face": [
+     33,
+     -25,
+     30
+    ]
+   }
+  },
+  {
+   "command": "body.print_face",
+   "params": {
+    "body": "Lid",
+    "point": [
+     33,
+     -25,
+     30
+    ]
+   }
+  },
+  {
+   "command": "body.print_face",
+   "params": {
+    "body": "Base",
+    "point": [
+     0,
+     25,
+     0
+    ]
+   }
+  },
+  {
+   "command": "appearance.assign",
+   "params": {
+    "bodies": [
+     "Base"
+    ],
+    "color": "#9aa3ad"
+   }
+  },
+  {
+   "command": "appearance.assign",
+   "params": {
+    "bodies": [
+     "Lid"
+    ],
+    "color": "#d9562b"
+   }
+  },
+  {
+   "command": "material.create",
+   "params": {
+    "name": "PETG",
+    "density_g_cm3": 1.27
+   }
+  },
+  {
+   "command": "material.assign",
+   "params": {
+    "bodies": [
+     "Base",
+     "Lid"
+    ],
+    "material": "PETG"
+   }
+  }
+ ]
+}

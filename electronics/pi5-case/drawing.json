@@ -1,0 +1,74 @@
+{
+ "design": "pi5-case.sc",
+ "out": "out/drawing",
+ "title": "Raspberry Pi 5 case",
+ "part_no": "EL-001",
+ "material": "PETG",
+ "author": "DW",
+ "sheets": [
+  {
+   "name": "base", "title": "Base (tray) · print open side up", "size": "A3", "scale": 2,
+   "hide": ["Lid"],
+   "image": {"path": "out/snap-base-iso.png", "at": [305, 14], "width": 90},
+   "views": [
+    {"name": "TOP",   "view": "top",   "at": [125, 92]},
+    {"name": "FRONT", "view": "front", "at": [125, 228], "hidden": false, "label_dy": 24},
+    {"name": "LEFT",  "view": "left",  "at": [330, 140], "label_dy": 8},
+    {"name": "RIGHT", "view": "right", "at": [330, 228]}
+   ],
+   "dims": [
+    {"view": "TOP", "a": [-45.5, 31], "b": [45.5, 31], "dir": "h", "off": 16},
+    {"view": "TOP", "a": [-39, 24.5], "b": [19, 24.5], "dir": "h", "off": 21},
+    {"view": "TOP", "a": [45.5, -31], "b": [45.5, 31], "dir": "v", "off": 10},
+    {"view": "TOP", "a": [-39, -24.5], "b": [-39, 24.5], "dir": "v", "off": -20},
+    {"view": "FRONT", "a": [45.5, 0], "b": [45.5, 28], "dir": "v", "off": 10},
+    {"view": "FRONT", "a": [-45.5, 0], "b": [-45.5, 10.3], "dir": "v", "off": -8},
+    {"view": "FRONT", "a": [-45.5, 10.3], "b": [-31.3, 10.3], "dir": "h", "off": -28.6},
+    {"view": "FRONT", "a": [-45.5, 10.3], "b": [-16.7, 10.3], "dir": "h", "off": -35.6},
+    {"view": "FRONT", "a": [-45.5, 10.3], "b": [-3.3, 10.3], "dir": "h", "off": -42.6},
+    {"view": "RIGHT", "a": [-26.3, 22.6], "b": [-9.3, 22.6], "dir": "h", "off": 14},
+    {"view": "RIGHT", "a": [-6.4, 25.1], "b": [8.6, 25.1], "dir": "h", "off": 9},
+    {"view": "RIGHT", "a": [-31, 0], "b": [-31, 8.1], "dir": "v", "off": -8},
+    {"view": "RIGHT", "a": [-31, 0], "b": [-31, 25.1], "dir": "v", "off": -16},
+    {"view": "LEFT", "a": [-7, 5.5], "b": [7, 5.5], "dir": "h", "off": -16},
+    {"view": "LEFT", "a": [7, 3.5], "b": [7, 7.5], "dir": "v", "off": 30},
+    {"view": "LEFT", "a": [-31, 0], "b": [-31, 5.5], "dir": "v", "off": -8}
+   ],
+   "notes_at": [15, 271],
+   "notes": [
+    "4× BOSS Ø6 × 5 HIGH ON 58 × 49 PITCH, PILOT Ø2.2 FOR M2.5 SELF-TAPPING SCREWS · WALL 2 · FLOOR 2 · OUTSIDE CORNERS R4",
+    "FRONT: 3× SLOT 11 × 6.5 (USB-C, HDMI0, HDMI1) · FLOOR: 7× SLOT 40 × 2.5 @ 6 · RIGHT: ETH 17 × 14.5, 2× USB 15 × 17 · LEFT: microSD SLOT 14 × 4"
+   ]
+  },
+  {
+   "name": "lid", "title": "Lid · print top face down", "size": "A3", "scale": 2,
+   "hide": ["Base"],
+   "image": {"path": "out/snap-section.png", "at": [262, 30], "width": 140},
+   "views": [
+    {"name": "TOP",   "view": "top",   "at": [130, 100], "label_dy": 12},
+    {"name": "FRONT", "view": "front", "at": [130, 266], "hidden": true}
+   ],
+   "dims": [
+    {"view": "TOP", "a": [-45.5, 31], "b": [45.5, 31], "dir": "h", "off": 16},
+    {"view": "TOP", "a": [-36.9, 26.25], "b": [17.1, 26.25], "dir": "h", "off": 11},
+    {"view": "TOP", "a": [45.5, -31], "b": [45.5, 31], "dir": "v", "off": 10},
+    {"view": "TOP", "a": [-45.5, -31], "b": [-45.5, 23.25], "dir": "v", "off": -20},
+    {"view": "TOP", "a": [-31, -20], "b": [-31, 10], "dir": "v", "off": -9, "text": "6×5 = 30"},
+    {"view": "TOP", "a": [-31, -20], "b": [19, -20], "dir": "h", "off": -30},
+    {"view": "FRONT", "a": [45.5, 28], "b": [45.5, 30], "dir": "v", "off": 8},
+    {"view": "FRONT", "a": [-43.2, 25.5], "b": [-43.2, 28], "dir": "v", "off": -12},
+    {"view": "FRONT", "a": [45.5, 25.5], "b": [45.5, 30], "dir": "v", "off": 22}
+   ],
+   "notes_at": [262, 130],
+   "notes": [
+    "SECTION THROUGH REAR STANDOFFS (ASSEMBLED)",
+    "",
+    "LIP 1.5 WIDE × 2.5 DEEP, 0.3 CLEARANCE PER SIDE",
+    "7× VENT SLOT 50 × 2.5 @ 5 PITCH",
+    "GPIO ACCESS SLOT 54 × 6, CENTRED X −9.9",
+    "\"Pi 5\" DEBOSS 0.6 DEEP, ARIAL BOLD, CAP HT 8",
+    "TOP EDGE CHAMFER 0.8 · OUTSIDE CORNERS R4"
+   ]
+  }
+ ]
+}
