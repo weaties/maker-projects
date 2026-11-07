@@ -22,6 +22,11 @@ PY
 echo "== print files (print/)"
 "$SC" run print.json --in "$NAME.sc" --quiet
 
+if [[ -f slice.json && -d "${BAMBU_STUDIO_APP:-/Applications/BambuStudio.app}" ]]; then
+  echo "== Bambu Lab print jobs (print/*.gcode.3mf, for this Mac's printer)"
+  "$HUB/tools/bambu/slice.py" .
+fi
+
 echo "== images (out/)"
 "$SC" snapshot "$NAME.sc" --out out/snap-base-iso.png --width 1200 --height 780 --no-grid --no-axes \
   --camera '{"target":[0,0,12],"yaw":-0.6,"pitch":0.6,"distance":150}' --body 'Lid:opacity=0' >/dev/null

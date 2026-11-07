@@ -5,3 +5,5 @@
 *.sc.bak
 # Built by build.sh from the script; the container changes on every save
 *.sc
+# Sliced for one particular printer: rebuild with tools/bambu/slice.py
+*.gcode.3mf

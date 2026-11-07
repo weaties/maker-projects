@@ -1,0 +1,5 @@
+{
+  "material": "PETG",
+  "plates": ["print/pi5-case-base.3mf", "print/pi5-case-lid.3mf"],
+  "settings": {"wall_loops": "3", "sparse_infill_density": "15%"}
+}

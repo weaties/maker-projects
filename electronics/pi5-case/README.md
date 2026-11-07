@@ -15,6 +15,8 @@ Two-part printed case: a tray with standoffs and port openings, and a friction-f
 - `pi5-case.sc`: the design to open in the SolidCraft app. Not in git; `./build.sh` makes it.
 - `pi5-case.step`: for other CAD.
 - `print.json` → `print/`: per-body 3MF/STL, already oriented (lid flipped, top face down).
+- `slice.json` → `print/*.<printer>.gcode.3mf`: Bambu Lab print jobs (PETG, 3 walls, 15 %), sliced by
+  `build.sh` for whichever Bambu printer your Bambu Studio is set to. Not in git. On DW's X2D: base 49 min / 27 g, lid 25 min / 11 g.
 - `drawing.json` → `out/drawing-*.svg|pdf|png`: dimensioned sheets.
 - `out/`: renders and snapshots.
 
