@@ -3,3 +3,5 @@
 **/out/*.json
 .DS_Store
 *.sc.bak
+# Built by build.sh from the script; the container changes on every save
+*.sc
