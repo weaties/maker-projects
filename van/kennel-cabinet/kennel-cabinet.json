@@ -5,7 +5,7 @@
    "params": {
     "name": "W",
     "expression": "15 in",
-    "comment": "cabinet width, X (fore-aft panel to fore-aft panel, outside)"
+    "comment": "cabinet width, X (front panel to aft panel, outside)"
    }
   },
   {
@@ -59,17 +59,9 @@
   {
    "command": "parameters.add",
    "params": {
-    "name": "leg_h",
-    "expression": "3.75 in",
-    "comment": "side rail drop-leg height from the top surface"
-   }
-  },
-  {
-   "command": "parameters.add",
-   "params": {
     "name": "pin_d",
     "expression": "0.375 in",
-    "comment": "dowel diameter (3/8)"
+    "comment": "steel dowel pin diameter (3/8). UNVERIFIED: measure the pins you buy"
    }
   },
   {
@@ -77,7 +69,7 @@
    "params": {
     "name": "pin_x",
     "expression": "0.75 in",
-    "comment": "dowel centre from the front end of the rail"
+    "comment": "pin centre from the front end of the rail. pin_x + groove_edge must equal fill_w or the lid hits the aft panel on the way down"
    }
   },
   {
@@ -85,31 +77,23 @@
    "params": {
     "name": "pin_z",
     "expression": "1.5 in",
-    "comment": "upper dowel centre below the top surface"
+    "comment": "upper pin centre below the top surface"
    }
   },
   {
    "command": "parameters.add",
    "params": {
     "name": "pin_pitch",
-    "expression": "1.5 in",
-    "comment": "lower dowel below the upper dowel"
+    "expression": "3 in",
+    "comment": "lower pin below the upper pin (v1: 1.5 in). Doubling it halves the pin forces in desk mode"
    }
   },
   {
    "command": "parameters.add",
    "params": {
-    "name": "groove_w",
-    "expression": "0.375 in",
-    "comment": "routed track width (3/8 bit)"
-   }
-  },
-  {
-   "command": "parameters.add",
-   "params": {
-    "name": "groove_d",
-    "expression": "t/2",
-    "comment": "routed track depth into the side panel's outside face"
+    "name": "leg_h",
+    "expression": "pin_z + pin_pitch + 0.75 in",
+    "comment": "side rail drop-leg height from the top surface"
    }
   },
   {
@@ -117,23 +101,87 @@
    "params": {
     "name": "groove_edge",
     "expression": "0.75 in",
-    "comment": "drop groove centre from the aft edge of the side panel"
+    "comment": "drop slot centre from the aft edge (fixed by the lid clearance, see pin_x)"
    }
   },
   {
    "command": "parameters.add",
    "params": {
-    "name": "groove_drop",
-    "expression": "11.75 in",
-    "comment": "drop groove: panel top edge to the bottom end of the groove"
+    "name": "desk_drop",
+    "expression": "9.3125 in",
+    "comment": "how far the lid drops in desk mode (as v1: desk surface at H - desk_drop)"
    }
   },
   {
    "command": "parameters.add",
    "params": {
-    "name": "conn_off",
-    "expression": "1.5 in",
-    "comment": "connector groove between the tracks, this far in front of the drop groove"
+    "name": "plate_t",
+    "expression": "0.1875 in",
+    "comment": "aluminium track plate (3/16 6061), let in flush. UNVERIFIED: measure the stock"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "slot_w",
+    "expression": "pin_d + 0.15 mm",
+    "comment": "slot in the plate: pin + 0.15 mm running clearance"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "relief_w",
+    "expression": "pin_d + 0.0625 in",
+    "comment": "relief groove in the ply behind the slots (pin never bears on ply)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "relief_d",
+    "expression": "0.25 in",
+    "comment": "relief groove depth below the plate"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "band_margin",
+    "expression": "1.25 in",
+    "comment": "plate below the lower track"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "drop_front",
+    "expression": "1.25 in",
+    "comment": "plate in front of the drop slot centre"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "plate_r",
+    "expression": "0.25 in",
+    "comment": "plate corner radius inside the panel (>= bit radius)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "scr_d",
+    "expression": "0.15 in",
+    "comment": "#6 flat-head screw clearance hole"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "scr_cs",
+    "expression": "0.28 in",
+    "comment": "#6 countersink diameter (82 deg)"
    }
   },
   {
@@ -142,6 +190,55 @@
     "name": "corner_r",
     "expression": "0.25 in",
     "comment": "inside corner radius of the rail"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "bracket_l",
+    "expression": "10 in",
+    "comment": "folding desk bracket arm. UNVERIFIED: set from the brackets you buy"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "bracket_h",
+    "expression": "8 in",
+    "comment": "folding desk bracket wall leg. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "bracket_y",
+    "expression": "6 in",
+    "comment": "bracket centre lines either side of the middle"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "desk",
+    "expression": "0",
+    "comment": "0 = lid stowed on top, 1 = desk mode (slid out and dropped)",
+    "unit": ""
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lid_dx",
+    "expression": "desk*(W - pin_x - groove_edge)",
+    "comment": "lid slide (follows desk)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "lid_dz",
+    "expression": "-desk*desk_drop",
+    "comment": "lid drop (follows desk)"
    }
   },
   {
@@ -248,21 +345,6 @@
   {
    "command": "solid.box",
    "params": {
-    "length": "W - fill_w",
-    "width": "D",
-    "height": "t",
-    "center": [
-     "fill_w/2",
-     0,
-     "H - t/2"
-    ],
-    "name": "TopBoard",
-    "body_name": "Top"
-   }
-  },
-  {
-   "command": "solid.box",
-   "params": {
     "length": "fill_w",
     "width": "D",
     "height": "t",
@@ -279,12 +361,1677 @@
    "command": "solid.box",
    "params": {
     "length": "W",
+    "width": "plate_t",
+    "height": "pin_z + pin_pitch + band_margin - t",
+    "center": [
+     0,
+     "D/2 - plate_t/2",
+     "H - t - (pin_z + pin_pitch + band_margin - t)/2"
+    ],
+    "name": "PlateBand",
+    "body_name": "PlateOutside"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "groove_edge + drop_front",
+    "width": "plate_t",
+    "height": "desk_drop + 1 in - band_margin",
+    "center": [
+     "W/2 - (groove_edge + drop_front)/2",
+     "D/2 - plate_t/2",
+     "H - pin_z - pin_pitch - band_margin - (desk_drop + 1 in - band_margin)/2"
+    ],
+    "operation": "join",
+    "targets": [
+     "PlateOutside"
+    ],
+    "name": "PlateDrop"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "edges": [
+     [
+      139.7,
+      264.319,
+      666.75
+     ]
+    ],
+    "radius": "plate_r",
+    "name": "PlateInnerCorner"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "edges": [
+     [
+      139.7,
+      264.319,
+      436.562
+     ]
+    ],
+    "radius": "plate_r",
+    "name": "PlateBottomCorner"
+   }
+  },
+  {
+   "command": "solid.mirror",
+   "params": {
+    "bodies": [
+     "PlateOutside"
+    ],
+    "plane": "XZ",
+    "name": "MirrorPlate"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "PlateOutside (2)",
+    "name": "PlatePassenger"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "OutsideSide",
+    "tools": [
+     "PlateOutside"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "RebateOutside"
+   }
+  },
+  {
+   "command": "solid.combine",
+   "params": {
+    "target": "PassengerSide",
+    "tools": [
+     "PlatePassenger"
+    ],
+    "operation": "cut",
+    "keep_tools": true,
+    "name": "RebatePassenger"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "D/2",
+    "name": "SlotsOutsideSk"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -698.5
+     ],
+     "p1": [
+      171.45,
+      -698.5
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -461.9625
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch - desk_drop"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "plate_t",
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "PlateOutside"
+    ],
+    "name": "SlotsOutside"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "-D/2",
+    "name": "SlotsPassengerSk"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -698.5
+     ],
+     "p1": [
+      171.45,
+      -698.5
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -461.9625
+     ],
+     "width": 9.675,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "slot_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch - desk_drop"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "plate_t",
+    "direction": "positive",
+    "operation": "cut",
+    "targets": [
+     "PlatePassenger"
+    ],
+    "name": "SlotsPassenger"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "D/2",
+    "name": "ReliefOutsideSk"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -698.5
+     ],
+     "p1": [
+      171.45,
+      -698.5
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -461.9625
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch - desk_drop"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "plate_t + relief_d",
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "OutsideSide"
+    ],
+    "name": "ReliefOutside"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "-D/2",
+    "name": "ReliefPassengerSk"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -698.5
+     ],
+     "p1": [
+      171.45,
+      -698.5
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -461.9625
+     ],
+     "width": 11.1125,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "relief_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch - desk_drop"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "plate_t + relief_d",
+    "direction": "positive",
+    "operation": "cut",
+    "targets": [
+     "PassengerSide"
+    ],
+    "name": "ReliefPassenger"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-W/2 + t/2",
+     "D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside1"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-3.5 in",
+     "D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside2"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "0 in",
+     "D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside3"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "3.5 in",
+     "D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside4"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside5"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-W/2 + t/2",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside6"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-3.5 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside7"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "0 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside8"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "3.5 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside9"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside10"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 1*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside11"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 1*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside12"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 2*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside13"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 2*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside14"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 3*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside15"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "D/2",
+     "H - pin_z - pin_pitch - band_margin - 3*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     -1,
+     0
+    ],
+    "name": "ScrewOutside16"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-W/2 + t/2",
+     "-D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger1"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-3.5 in",
+     "-D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger2"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "0 in",
+     "-D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger3"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "3.5 in",
+     "-D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger4"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "-D/2",
+     "H - pin_z - pin_pitch/2"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger5"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-W/2 + t/2",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger6"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "-3.5 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger7"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "0 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger8"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "3.5 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger9"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin/2 - 0.125 in"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger10"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 1*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger11"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 1*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger12"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 2*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger13"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 2*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger14"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - groove_edge - drop_front/2 - 0.125 in",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 3*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger15"
+   }
+  },
+  {
+   "command": "solid.hole",
+   "params": {
+    "position": [
+     "W/2 - (groove_edge - slot_w/2)/2",
+     "-D/2",
+     "H - pin_z - pin_pitch - band_margin - 3*(desk_drop - band_margin)/3.4"
+    ],
+    "diameter": "scr_d",
+    "depth": "plate_t",
+    "type": "countersink",
+    "cs_diameter": "scr_cs",
+    "cs_angle": "82 deg",
+    "direction": [
+     0,
+     1,
+     0
+    ],
+    "name": "ScrewPassenger16"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W - fill_w",
+    "width": "D",
+    "height": "t",
+    "center": [
+     "fill_w/2 + lid_dx",
+     0,
+     "H - t/2 + lid_dz"
+    ],
+    "name": "TopBoard",
+    "body_name": "Top"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W",
     "width": "t",
     "height": "t",
     "center": [
-     0,
+     "lid_dx",
      "D/2 + t/2",
-     "H - t/2"
+     "H - t/2 + lid_dz"
     ],
     "name": "RailBar",
     "body_name": "RailOutside"
@@ -297,9 +2044,9 @@
     "width": "t",
     "height": "leg_h - t",
     "center": [
-     "-W/2 + leg_w/2",
+     "-W/2 + leg_w/2 + lid_dx",
      "D/2 + t/2",
-     "H - t - (leg_h - t)/2"
+     "H - t - (leg_h - t)/2 + lid_dz"
     ],
     "operation": "join",
     "targets": [
@@ -329,9 +2076,9 @@
     "height": "t + 2 mm",
     "axis": "Y",
     "base": [
-     "-W/2 + pin_x",
+     "-W/2 + pin_x + lid_dx",
      "D/2 - 1 mm",
-     "H - pin_z"
+     "H - pin_z + lid_dz"
     ],
     "operation": "cut",
     "targets": [
@@ -347,9 +2094,9 @@
     "height": "t + 2 mm",
     "axis": "Y",
     "base": [
-     "-W/2 + pin_x",
+     "-W/2 + pin_x + lid_dx",
      "D/2 - 1 mm",
-     "H - pin_z - pin_pitch"
+     "H - pin_z - pin_pitch + lid_dz"
     ],
     "operation": "cut",
     "targets": [
@@ -362,15 +2109,15 @@
    "command": "solid.cylinder",
    "params": {
     "diameter": "pin_d",
-    "height": "t + groove_d - 1.5 mm",
+    "height": "t + plate_t + relief_d - 0.0625 in",
     "axis": "Y",
     "base": [
-     "-W/2 + pin_x",
-     "D/2 - groove_d + 1.5 mm",
-     "H - pin_z"
+     "-W/2 + pin_x + lid_dx",
+     "D/2 - plate_t - relief_d + 0.0625 in",
+     "H - pin_z + lid_dz"
     ],
     "operation": "new",
-    "name": "PinOutsideUpperDowel",
+    "name": "PinOutsideUpperPin",
     "body_name": "PinOutsideUpper"
    }
   },
@@ -378,584 +2125,16 @@
    "command": "solid.cylinder",
    "params": {
     "diameter": "pin_d",
-    "height": "t + groove_d - 1.5 mm",
+    "height": "t + plate_t + relief_d - 0.0625 in",
     "axis": "Y",
     "base": [
-     "-W/2 + pin_x",
-     "D/2 - groove_d + 1.5 mm",
-     "H - pin_z - pin_pitch"
+     "-W/2 + pin_x + lid_dx",
+     "D/2 - plate_t - relief_d + 0.0625 in",
+     "H - pin_z - pin_pitch + lid_dz"
     ],
     "operation": "new",
-    "name": "PinOutsideLowerDowel",
+    "name": "PinOutsideLowerPin",
     "body_name": "PinOutsideLower"
-   }
-  },
-  {
-   "command": "sketch.create",
-   "params": {
-    "plane": "XZ",
-    "offset": "D/2",
-    "name": "TracksOutside"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      -171.45,
-      -774.7
-     ],
-     "p1": [
-      171.45,
-      -774.7
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a1.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a1.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a2.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - pin_x"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a2.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      -171.45,
-      -736.6
-     ],
-     "p1": [
-      171.45,
-      -736.6
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a3.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a3.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a4.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - pin_x"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a4.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      171.45,
-      -774.7
-     ],
-     "p1": [
-      171.45,
-      -500.0625
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a5.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a5.center"
-    ],
-    "type": "vertical",
-    "value": "H - t - groove_drop + groove_w/2"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a6.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a6.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      133.35,
-      -774.7
-     ],
-     "p1": [
-      133.35,
-      -736.6
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a7.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge - conn_off"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a7.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a8.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge - conn_off"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a8.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.finish",
-   "params": {}
-  },
-  {
-   "command": "solid.extrude",
-   "params": {
-    "distance": "groove_d",
-    "direction": "negative",
-    "operation": "cut",
-    "targets": [
-     "OutsideSide"
-    ],
-    "name": "GroovesOutside"
-   }
-  },
-  {
-   "command": "sketch.create",
-   "params": {
-    "plane": "XZ",
-    "offset": "-D/2",
-    "name": "TracksPassenger"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      -171.45,
-      -774.7
-     ],
-     "p1": [
-      171.45,
-      -774.7
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a1.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a1.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a2.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - pin_x"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a2.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      -171.45,
-      -736.6
-     ],
-     "p1": [
-      171.45,
-      -736.6
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a3.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a3.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a4.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - pin_x"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a4.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      171.45,
-      -774.7
-     ],
-     "p1": [
-      171.45,
-      -500.0625
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a5.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a5.center"
-    ],
-    "type": "vertical",
-    "value": "H - t - groove_drop + groove_w/2"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a6.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a6.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.draw.dimensioned",
-   "params": {
-    "command": "sketch.slot.center_to_center",
-    "params": {
-     "p0": [
-      133.35,
-      -774.7
-     ],
-     "p1": [
-      133.35,
-      -736.6
-     ],
-     "width": 9.525,
-     "connect": false
-    },
-    "dimensions": {
-     "width": "groove_w"
-    }
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a7.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge - conn_off"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a7.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z - pin_pitch"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a8.center"
-    ],
-    "type": "horizontal",
-    "value": "W/2 - groove_edge - conn_off"
-   }
-  },
-  {
-   "command": "sketch.dimension",
-   "params": {
-    "entities": [
-     "origin",
-     "a8.center"
-    ],
-    "type": "vertical",
-    "value": "H - pin_z"
-   }
-  },
-  {
-   "command": "sketch.finish",
-   "params": {}
-  },
-  {
-   "command": "solid.extrude",
-   "params": {
-    "distance": "groove_d",
-    "direction": "positive",
-    "operation": "cut",
-    "targets": [
-     "PassengerSide"
-    ],
-    "name": "GroovesPassenger"
    }
   },
   {
@@ -992,6 +2171,72 @@
    }
   },
   {
+   "command": "solid.box",
+   "params": {
+    "length": "bracket_l",
+    "width": "0.1875 in",
+    "height": "1.25 in",
+    "center": [
+     "W/2 + bracket_l/2",
+     "bracket_y",
+     "H - t - desk_drop - 0.625 in"
+    ],
+    "name": "Bracket1Arm",
+    "body_name": "Bracket1"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "0.1875 in",
+    "width": "0.1875 in",
+    "height": "bracket_h - 1.25 in",
+    "center": [
+     "W/2 + 0.09375 in",
+     "bracket_y",
+     "H - t - desk_drop - 1.25 in - (bracket_h - 1.25 in)/2"
+    ],
+    "operation": "join",
+    "targets": [
+     "Bracket1"
+    ],
+    "name": "Bracket1Leg"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "bracket_l",
+    "width": "0.1875 in",
+    "height": "1.25 in",
+    "center": [
+     "W/2 + bracket_l/2",
+     "-bracket_y",
+     "H - t - desk_drop - 0.625 in"
+    ],
+    "name": "Bracket2Arm",
+    "body_name": "Bracket2"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "0.1875 in",
+    "width": "0.1875 in",
+    "height": "bracket_h - 1.25 in",
+    "center": [
+     "W/2 + 0.09375 in",
+     "-bracket_y",
+     "H - t - desk_drop - 1.25 in - (bracket_h - 1.25 in)/2"
+    ],
+    "operation": "join",
+    "targets": [
+     "Bracket2"
+    ],
+    "name": "Bracket2Leg"
+   }
+  },
+  {
    "command": "material.assign",
    "params": {
     "bodies": [
@@ -1009,11 +2254,13 @@
    }
   },
   {
-   "command": "material.create",
+   "command": "material.assign",
    "params": {
-    "name": "Hardwood dowel",
-    "density_g_cm3": 0.7,
-    "color": "#b08850"
+    "bodies": [
+     "PlateOutside",
+     "PlatePassenger"
+    ],
+    "material": "Aluminum"
    }
   },
   {
@@ -1023,9 +2270,11 @@
      "PinOutsideUpper",
      "PinOutsideLower",
      "PinPassengerUpper",
-     "PinPassengerLower"
+     "PinPassengerLower",
+     "Bracket1",
+     "Bracket2"
     ],
-    "material": "Hardwood dowel"
+    "material": "Steel"
    }
   }
  ]
