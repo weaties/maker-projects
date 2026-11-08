@@ -1,0 +1,595 @@
+{
+ "design": "kennel-cabinet.sc",
+ "out": "out/drawing",
+ "title": "Van kennel cabinet",
+ "part_no": "VN-002",
+ "material": "3/4 ash ply",
+ "author": "DW",
+ "units": "in",
+ "tolerance": "±1/32 (MEASURE PLY AND PLATE BEFORE CUTTING)",
+ "bodies": [
+  "Front",
+  "Aft",
+  "PassengerSide",
+  "OutsideSide",
+  "Shelf",
+  "TopFiller",
+  "PlateOutside",
+  "PlatePassenger",
+  "Top",
+  "RailOutside",
+  "PinOutsideUpper",
+  "PinOutsideLower",
+  "RailPassenger",
+  "PinPassengerUpper",
+  "PinPassengerLower",
+  "InsertOutside",
+  "InsertPassenger"
+ ],
+ "sheets": [
+  {
+   "name": "panels",
+   "title": "Panels and rails",
+   "size": "TABLOID",
+   "scale": 0.25,
+   "views": [
+    {
+     "name": "FRONT / AFT (2)",
+     "view": "left",
+     "only": [
+      "Front"
+     ],
+     "at": [
+      82,
+      232
+     ],
+     "label_dy": 8
+    },
+    {
+     "name": "SHELF",
+     "view": "top",
+     "only": [
+      "Shelf"
+     ],
+     "at": [
+      212,
+      92
+     ],
+     "label_dy": 6
+    },
+    {
+     "name": "TOP + FILLER",
+     "view": "top",
+     "only": [
+      "Top",
+      "TopFiller"
+     ],
+     "at": [
+      345,
+      92
+     ],
+     "label_dy": 6
+    },
+    {
+     "name": "SIDE RAIL (2, MIRRORED)",
+     "view": "front",
+     "only": [
+      "RailPassenger"
+     ],
+     "at": [
+      212,
+      412
+     ],
+     "label_dy": 6
+    }
+   ],
+   "dims": [
+    {
+     "view": "FRONT / AFT (2)",
+     "a": [
+      -247.65,
+      0
+     ],
+     "b": [
+      247.65,
+      0
+     ],
+     "dir": "h",
+     "off": -8
+    },
+    {
+     "view": "FRONT / AFT (2)",
+     "a": [
+      247.65,
+      0
+     ],
+     "b": [
+      247.65,
+      793.75
+     ],
+     "dir": "v",
+     "off": 8
+    },
+    {
+     "view": "SHELF",
+     "a": [
+      -171.45,
+      247.65
+     ],
+     "b": [
+      171.45,
+      247.65
+     ],
+     "dir": "h",
+     "off": 7
+    },
+    {
+     "view": "SHELF",
+     "a": [
+      171.45,
+      -247.65
+     ],
+     "b": [
+      171.45,
+      247.65
+     ],
+     "dir": "v",
+     "off": 7
+    },
+    {
+     "view": "TOP + FILLER",
+     "a": [
+      -190.5,
+      266.7
+     ],
+     "b": [
+      -152.4,
+      266.7
+     ],
+     "dir": "h",
+     "off": 7
+    },
+    {
+     "view": "TOP + FILLER",
+     "a": [
+      -152.4,
+      266.7
+     ],
+     "b": [
+      190.5,
+      266.7
+     ],
+     "dir": "h",
+     "off": 7
+    },
+    {
+     "view": "TOP + FILLER",
+     "a": [
+      190.5,
+      -266.7
+     ],
+     "b": [
+      190.5,
+      266.7
+     ],
+     "dir": "v",
+     "off": 7
+    },
+    {
+     "view": "TOP + FILLER",
+     "note": "FILLER: FIXED\nTOP: SLIDES",
+     "at": [
+      -185,
+      -300
+     ]
+    },
+    {
+     "view": "SIDE RAIL (2, MIRRORED)",
+     "a": [
+      -190.5,
+      812.8
+     ],
+     "b": [
+      190.5,
+      812.8
+     ],
+     "dir": "h",
+     "off": 7
+    },
+    {
+     "view": "SIDE RAIL (2, MIRRORED)",
+     "a": [
+      -190.5,
+      679.45
+     ],
+     "b": [
+      -190.5,
+      812.8
+     ],
+     "dir": "v",
+     "off": -9
+    },
+    {
+     "view": "SIDE RAIL (2, MIRRORED)",
+     "a": [
+      -152.4,
+      679.45
+     ],
+     "b": [
+      -190.5,
+      679.45
+     ],
+     "dir": "h",
+     "off": -7
+    },
+    {
+     "view": "SIDE RAIL (2, MIRRORED)",
+     "a": [
+      190.5,
+      793.75
+     ],
+     "b": [
+      190.5,
+      812.8
+     ],
+     "dir": "v",
+     "off": 7
+    },
+    {
+     "view": "SIDE RAIL (2, MIRRORED)",
+     "note": "2× PIN HOLE 3/8 PRESS FIT\n3/4 FROM FRONT END,\n1 1/2 AND 4 1/2 BELOW TOP\nINSIDE CORNER R1/4",
+     "at": [
+      -120,
+      760
+     ],
+     "to": [
+      -171.45,
+      774.7
+     ]
+    }
+   ],
+   "notes_at": [
+    280,
+    200
+   ],
+   "notes": [
+    "ALL PARTS 3/4 ASH PLY (MEASURE THE SHEET).",
+    "FACE GRAIN HORIZONTAL ON FRONT/AFT",
+    "AND SIDE PANELS.",
+    "RAIL BAR GLUES TO THE TOP'S END GRAIN;",
+    "THE LEG CARRIES TWO 3/8 STEEL PINS 3 APART."
+   ]
+  },
+  {
+   "name": "sides",
+   "title": "Side panels (outer faces shown)",
+   "size": "TABLOID",
+   "scale": 0.25,
+   "views": [
+    {
+     "name": "OUTSIDE SIDE (VAN WALL SIDE)",
+     "view": "back",
+     "only": [
+      "OutsideSide"
+     ],
+     "at": [
+      70,
+      232
+     ],
+     "label_dy": 8
+    },
+    {
+     "name": "PASSENGER SIDE (KENNEL OPENING)",
+     "view": "front",
+     "only": [
+      "PassengerSide"
+     ],
+     "at": [
+      200,
+      232
+     ],
+     "label_dy": 8
+    }
+   ],
+   "dims": [
+    {
+     "view": "OUTSIDE SIDE (VAN WALL SIDE)",
+     "a": [
+      -190.5,
+      0
+     ],
+     "b": [
+      190.5,
+      0
+     ],
+     "dir": "h",
+     "off": -8
+    },
+    {
+     "view": "OUTSIDE SIDE (VAN WALL SIDE)",
+     "a": [
+      190.5,
+      0
+     ],
+     "b": [
+      190.5,
+      793.75
+     ],
+     "dir": "v",
+     "off": 8
+    },
+    {
+     "view": "OUTSIDE SIDE (VAN WALL SIDE)",
+     "a": [
+      -190.5,
+      666.75
+     ],
+     "b": [
+      -190.5,
+      793.75
+     ],
+     "dir": "v",
+     "off": -8
+    },
+    {
+     "view": "OUTSIDE SIDE (VAN WALL SIDE)",
+     "a": [
+      -190.5,
+      0
+     ],
+     "b": [
+      -190.5,
+      436.56
+     ],
+     "dir": "v",
+     "off": -8
+    },
+    {
+     "view": "PASSENGER SIDE (KENNEL OPENING)",
+     "a": [
+      -190.5,
+      0
+     ],
+     "b": [
+      190.5,
+      0
+     ],
+     "dir": "h",
+     "off": -8
+    },
+    {
+     "view": "PASSENGER SIDE (KENNEL OPENING)",
+     "a": [
+      -190.5,
+      0
+     ],
+     "b": [
+      -190.5,
+      793.75
+     ],
+     "dir": "v",
+     "off": -8
+    },
+    {
+     "view": "PASSENGER SIDE (KENNEL OPENING)",
+     "a": [
+      -171.45,
+      304.8
+     ],
+     "b": [
+      171.45,
+      304.8
+     ],
+     "dir": "h",
+     "off": 5
+    },
+    {
+     "view": "PASSENGER SIDE (KENNEL OPENING)",
+     "a": [
+      -171.45,
+      0
+     ],
+     "b": [
+      -171.45,
+      304.8
+     ],
+     "dir": "v",
+     "off": 6
+    },
+    {
+     "view": "PASSENGER SIDE (KENNEL OPENING)",
+     "a": [
+      190.5,
+      0
+     ],
+     "b": [
+      190.5,
+      436.56
+     ],
+     "dir": "v",
+     "off": 8
+    }
+   ],
+   "notes_at": [
+    285,
+    40
+   ],
+   "notes": [
+    "POCKET: PLATE + INSERT OUTLINE (SHEET 3),",
+    "0.190 DEEP (= MEASURED PLATE),",
+    "OUTER FACE. INSIDE CORNERS R1/4.",
+    "",
+    "RELIEF GROOVES: 7/16 WIDE,",
+    "1/4 BELOW THE POCKET FLOOR, ON THE",
+    "PLATE'S SLOT CENTRE LINES (TRACKS,",
+    "DROP SLOT TO THE TOP EDGE, HANG CURVE).",
+    "",
+    "THE PANELS ARE MIRROR IMAGES:",
+    "AFT EDGE IS LEFT ON THE OUTSIDE",
+    "SIDE, RIGHT ON THE PASSENGER SIDE.",
+    "",
+    "KENNEL OPENING 13 1/2 × 12",
+    "(PASSENGER SIDE ONLY)."
+   ]
+  },
+  {
+   "name": "plate",
+   "title": "Track plate (SendCutSend)",
+   "size": "TABLOID",
+   "scale": 0.5,
+   "material": "6061-T6 0.190",
+   "views": [
+    {
+     "name": "TRACK PLATE (ORDER 2)",
+     "view": "front",
+     "only": [
+      "PlatePassenger",
+      "InsertPassenger"
+     ],
+     "at": [
+      140,
+      432
+     ],
+     "label_dy": 12
+    }
+   ],
+   "dims": [
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      -190.5,
+      793.75
+     ],
+     "b": [
+      190.5,
+      793.75
+     ],
+     "dir": "h",
+     "off": 20
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      190.5,
+      436.56
+     ],
+     "b": [
+      190.5,
+      793.75
+     ],
+     "dir": "v",
+     "off": 24
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      -190.5,
+      666.75
+     ],
+     "b": [
+      -190.5,
+      793.75
+     ],
+     "dir": "v",
+     "off": -10
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      -171.45,
+      698.5
+     ],
+     "b": [
+      -171.45,
+      774.7
+     ],
+     "dir": "v",
+     "off": -24
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      -171.45,
+      774.7
+     ],
+     "b": [
+      171.45,
+      774.7
+     ],
+     "dir": "h",
+     "off": 10
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      171.45,
+      461.96
+     ],
+     "b": [
+      171.45,
+      793.75
+     ],
+     "dir": "v",
+     "off": 14,
+     "text": "13 1/16 TO TOP EDGE"
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "a": [
+      139.7,
+      436.56
+     ],
+     "b": [
+      190.5,
+      436.56
+     ],
+     "dir": "h",
+     "off": -10
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "note": "HANG CURVE R3 ABOUT THE TOP CORNER,\nLOWER TRACK TO UPPER TRACK.\nTHE QUARTER-ROUND INSERT IS A\nSEPARATE PIECE (2 SCREWS)",
+     "at": [
+      -185,
+      560
+     ],
+     "to": [
+      130,
+      735
+     ]
+    },
+    {
+     "view": "TRACK PLATE (ORDER 2)",
+     "note": "DROP SLOT OPEN AT THE TOP:\nTHE LID DROPS IN FROM ABOVE",
+     "at": [
+      200,
+      770
+     ],
+     "to": [
+      171.45,
+      793.75
+     ]
+    }
+   ],
+   "notes_at": [
+    290,
+    40
+   ],
+   "notes": [
+    "CUT FROM sendcutsend/vn002-track-plate.dxf (THE DXF GOVERNS).",
+    "6061-T6 0.190, BLACK ANODIZE. ORDER 2 SETS (PLATE + INSERT):",
+    "THE SECOND SET IS THE SAME PARTS FLIPPED OVER.",
+    "",
+    "SLOTS 0.381 WIDE (3/8 PIN + 0.15 mm), CENTRED 3/4 FROM THE",
+    "FRONT AND AFT EDGES. TRACKS 3 APART.",
+    "",
+    "24× #6 82° COUNTERSINK PER SET (PILOT 0.164, Ø0.307),",
+    "COUNTERSUNK ON THE OUTER FACE.",
+    "",
+    "OPEN: 10 HOLES IN THE NARROW STRIPS (BEHIND THE DROP",
+    "SLOT, ABOVE THE UPPER TRACK) LEAVE 0.126 EACH SIDE",
+    "OF THE COUNTERSINK. CONSIDER #4 THERE."
+   ]
+  }
+ ]
+}
