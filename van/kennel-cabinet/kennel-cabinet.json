@@ -1,0 +1,1032 @@
+{
+ "commands": [
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "W",
+    "expression": "15 in",
+    "comment": "cabinet width, X (fore-aft panel to fore-aft panel, outside)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "D",
+    "expression": "21 in",
+    "comment": "cabinet depth, Y (side panel to side panel, outside)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "H",
+    "expression": "32 in",
+    "comment": "cabinet height to the top surface, Z"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "t",
+    "expression": "0.75 in",
+    "comment": "ply thickness. Onshape value (nominal 3/4); MEASURE the sheet before cutting"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "kennel_h",
+    "expression": "12 in",
+    "comment": "kennel opening height = underside of the shelf"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "fill_w",
+    "expression": "1.5 in",
+    "comment": "fixed top filler strip along the front panel"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "leg_w",
+    "expression": "1.5 in",
+    "comment": "side rail drop-leg width (X)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "leg_h",
+    "expression": "3.75 in",
+    "comment": "side rail drop-leg height from the top surface"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "pin_d",
+    "expression": "0.375 in",
+    "comment": "dowel diameter (3/8)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "pin_x",
+    "expression": "0.75 in",
+    "comment": "dowel centre from the front end of the rail"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "pin_z",
+    "expression": "1.5 in",
+    "comment": "upper dowel centre below the top surface"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "pin_pitch",
+    "expression": "1.5 in",
+    "comment": "lower dowel below the upper dowel"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "groove_w",
+    "expression": "0.375 in",
+    "comment": "routed track width (3/8 bit)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "groove_d",
+    "expression": "t/2",
+    "comment": "routed track depth into the side panel's outside face"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "groove_edge",
+    "expression": "0.75 in",
+    "comment": "drop groove centre from the aft edge of the side panel"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "groove_drop",
+    "expression": "11.75 in",
+    "comment": "drop groove: panel top edge to the bottom end of the groove"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "conn_off",
+    "expression": "1.5 in",
+    "comment": "connector groove between the tracks, this far in front of the drop groove"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "corner_r",
+    "expression": "0.25 in",
+    "comment": "inside corner radius of the rail"
+   }
+  },
+  {
+   "command": "material.create",
+   "params": {
+    "name": "Ash ply",
+    "density_g_cm3": 0.66,
+    "color": "#d9c7a3"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "t",
+    "width": "D - 2*t",
+    "height": "H - t",
+    "center": [
+     "-W/2 + t/2",
+     0,
+     "(H - t)/2"
+    ],
+    "name": "FrontPanel",
+    "body_name": "Front"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "t",
+    "width": "D - 2*t",
+    "height": "H - t",
+    "center": [
+     "W/2 - t/2",
+     0,
+     "(H - t)/2"
+    ],
+    "name": "AftPanel",
+    "body_name": "Aft"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W",
+    "width": "t",
+    "height": "H - t",
+    "center": [
+     0,
+     "-D/2 + t/2",
+     "(H - t)/2"
+    ],
+    "name": "PassengerPanel",
+    "body_name": "PassengerSide"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W - 2*t",
+    "width": "2*t",
+    "height": "2*kennel_h",
+    "center": [
+     0,
+     "-D/2 + t/2",
+     0
+    ],
+    "operation": "cut",
+    "targets": [
+     "PassengerSide"
+    ],
+    "name": "KennelOpening"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W",
+    "width": "t",
+    "height": "H - t",
+    "center": [
+     0,
+     "D/2 - t/2",
+     "(H - t)/2"
+    ],
+    "name": "OutsidePanel",
+    "body_name": "OutsideSide"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W - 2*t",
+    "width": "D - 2*t",
+    "height": "t",
+    "center": [
+     0,
+     0,
+     "kennel_h + t/2"
+    ],
+    "name": "ShelfBoard",
+    "body_name": "Shelf"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W - fill_w",
+    "width": "D",
+    "height": "t",
+    "center": [
+     "fill_w/2",
+     0,
+     "H - t/2"
+    ],
+    "name": "TopBoard",
+    "body_name": "Top"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "fill_w",
+    "width": "D",
+    "height": "t",
+    "center": [
+     "-W/2 + fill_w/2",
+     0,
+     "H - t/2"
+    ],
+    "name": "TopFillerBoard",
+    "body_name": "TopFiller"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "W",
+    "width": "t",
+    "height": "t",
+    "center": [
+     0,
+     "D/2 + t/2",
+     "H - t/2"
+    ],
+    "name": "RailBar",
+    "body_name": "RailOutside"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "length": "leg_w",
+    "width": "t",
+    "height": "leg_h - t",
+    "center": [
+     "-W/2 + leg_w/2",
+     "D/2 + t/2",
+     "H - t - (leg_h - t)/2"
+    ],
+    "operation": "join",
+    "targets": [
+     "RailOutside"
+    ],
+    "name": "RailLeg"
+   }
+  },
+  {
+   "command": "solid.fillet",
+   "params": {
+    "edges": [
+     [
+      -152.4,
+      276.225,
+      793.75
+     ]
+    ],
+    "radius": "corner_r",
+    "name": "RailCorner"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "diameter": "pin_d",
+    "height": "t + 2 mm",
+    "axis": "Y",
+    "base": [
+     "-W/2 + pin_x",
+     "D/2 - 1 mm",
+     "H - pin_z"
+    ],
+    "operation": "cut",
+    "targets": [
+     "RailOutside"
+    ],
+    "name": "RailPinHole1"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "diameter": "pin_d",
+    "height": "t + 2 mm",
+    "axis": "Y",
+    "base": [
+     "-W/2 + pin_x",
+     "D/2 - 1 mm",
+     "H - pin_z - pin_pitch"
+    ],
+    "operation": "cut",
+    "targets": [
+     "RailOutside"
+    ],
+    "name": "RailPinHole2"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "diameter": "pin_d",
+    "height": "t + groove_d - 1.5 mm",
+    "axis": "Y",
+    "base": [
+     "-W/2 + pin_x",
+     "D/2 - groove_d + 1.5 mm",
+     "H - pin_z"
+    ],
+    "operation": "new",
+    "name": "PinOutsideUpperDowel",
+    "body_name": "PinOutsideUpper"
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "diameter": "pin_d",
+    "height": "t + groove_d - 1.5 mm",
+    "axis": "Y",
+    "base": [
+     "-W/2 + pin_x",
+     "D/2 - groove_d + 1.5 mm",
+     "H - pin_z - pin_pitch"
+    ],
+    "operation": "new",
+    "name": "PinOutsideLowerDowel",
+    "body_name": "PinOutsideLower"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "D/2",
+    "name": "TracksOutside"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -736.6
+     ],
+     "p1": [
+      171.45,
+      -736.6
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -500.0625
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - t - groove_drop + groove_w/2"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      133.35,
+      -774.7
+     ],
+     "p1": [
+      133.35,
+      -736.6
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a7.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge - conn_off"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a7.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a8.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge - conn_off"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a8.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "groove_d",
+    "direction": "negative",
+    "operation": "cut",
+    "targets": [
+     "OutsideSide"
+    ],
+    "name": "GroovesOutside"
+   }
+  },
+  {
+   "command": "sketch.create",
+   "params": {
+    "plane": "XZ",
+    "offset": "-D/2",
+    "name": "TracksPassenger"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -774.7
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a1.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a2.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      -171.45,
+      -736.6
+     ],
+     "p1": [
+      171.45,
+      -736.6
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a3.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - pin_x"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a4.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      171.45,
+      -774.7
+     ],
+     "p1": [
+      171.45,
+      -500.0625
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a5.center"
+    ],
+    "type": "vertical",
+    "value": "H - t - groove_drop + groove_w/2"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a6.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.draw.dimensioned",
+   "params": {
+    "command": "sketch.slot.center_to_center",
+    "params": {
+     "p0": [
+      133.35,
+      -774.7
+     ],
+     "p1": [
+      133.35,
+      -736.6
+     ],
+     "width": 9.525,
+     "connect": false
+    },
+    "dimensions": {
+     "width": "groove_w"
+    }
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a7.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge - conn_off"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a7.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z - pin_pitch"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a8.center"
+    ],
+    "type": "horizontal",
+    "value": "W/2 - groove_edge - conn_off"
+   }
+  },
+  {
+   "command": "sketch.dimension",
+   "params": {
+    "entities": [
+     "origin",
+     "a8.center"
+    ],
+    "type": "vertical",
+    "value": "H - pin_z"
+   }
+  },
+  {
+   "command": "sketch.finish",
+   "params": {}
+  },
+  {
+   "command": "solid.extrude",
+   "params": {
+    "distance": "groove_d",
+    "direction": "positive",
+    "operation": "cut",
+    "targets": [
+     "PassengerSide"
+    ],
+    "name": "GroovesPassenger"
+   }
+  },
+  {
+   "command": "solid.mirror",
+   "params": {
+    "bodies": [
+     "RailOutside",
+     "PinOutsideUpper",
+     "PinOutsideLower"
+    ],
+    "plane": "XZ",
+    "name": "MirrorRail"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "RailOutside (2)",
+    "name": "RailPassenger"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "PinOutsideUpper (2)",
+    "name": "PinPassengerUpper"
+   }
+  },
+  {
+   "command": "body.rename",
+   "params": {
+    "body": "PinOutsideLower (2)",
+    "name": "PinPassengerLower"
+   }
+  },
+  {
+   "command": "material.assign",
+   "params": {
+    "bodies": [
+     "Front",
+     "Aft",
+     "PassengerSide",
+     "OutsideSide",
+     "Shelf",
+     "Top",
+     "TopFiller",
+     "RailOutside",
+     "RailPassenger"
+    ],
+    "material": "Ash ply"
+   }
+  },
+  {
+   "command": "material.create",
+   "params": {
+    "name": "Hardwood dowel",
+    "density_g_cm3": 0.7,
+    "color": "#b08850"
+   }
+  },
+  {
+   "command": "material.assign",
+   "params": {
+    "bodies": [
+     "PinOutsideUpper",
+     "PinOutsideLower",
+     "PinPassengerUpper",
+     "PinPassengerLower"
+    ],
+    "material": "Hardwood dowel"
+   }
+  }
+ ]
+}
