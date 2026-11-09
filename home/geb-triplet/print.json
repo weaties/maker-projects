@@ -1,0 +1,6 @@
+{"commands":[
+ {"command":"file.export_3mf","params":{"path":"print/geb.3mf","bodies":["GEB"],"quality":"fine"}},
+ {"command":"file.export_stl","params":{"path":"print/geb.stl","bodies":["GEB"],"quality":"fine"}},
+ {"command":"file.export_3mf","params":{"path":"print/egb.3mf","bodies":["EGB"],"quality":"fine"}},
+ {"command":"file.export_stl","params":{"path":"print/egb.stl","bodies":["EGB"],"quality":"fine"}}
+]}

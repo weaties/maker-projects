@@ -7,6 +7,7 @@ DW's own parts: boat, shop and maker space, electronics, and home. Built with th
 | ID | Part | Area | Status |
 |---|---|---|---|
 | EL-001 | [Raspberry Pi 5 case](electronics/pi5-case/) | electronics | designed, not printed |
+| HM-001 | [GEB trip-let](home/geb-triplet/) | home | designed, sliced |
 | VN-002 | [Kennel cabinet with sliding desk top](van/kennel-cabinet/) | van | v1 rebuilt from Onshape; v2 in progress |
 
 IDs: `BT-` boat · `SH-` shop / maker space · `EL-` electronics · `HM-` home.

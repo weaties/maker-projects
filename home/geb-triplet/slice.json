@@ -1,0 +1,5 @@
+{
+  "material": "PLA",
+  "plates": ["print/geb.3mf", "print/egb.3mf"],
+  "settings": {"enable_support": "1", "support_type": "tree(auto)", "wall_loops": "3", "sparse_infill_density": "15%"}
+}
