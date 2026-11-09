@@ -1,6 +1,6 @@
 # Maker projects (personal)
 
-DW's own parts: boat, shop and maker space, electronics, and home. Built with the
+DW's own parts: boat, shop and maker space, electronics, home, and the van. Built with the
 [maker hub](https://github.com/weaties/maker-hub) tooling; this repo is cloned into the hub at
 `projects/personal/`.
 
@@ -8,6 +8,7 @@ DW's own parts: boat, shop and maker space, electronics, and home. Built with th
 |---|---|---|---|
 | EL-001 | [Raspberry Pi 5 case](electronics/pi5-case/) | electronics | designed, not printed |
 | HM-001 | [GEB trip-let](home/geb-triplet/) | home | designed, sliced |
+| VN-001 | [Sprinter phone sun hood](van/sprinter-phone-hood/) | van | idea: measuring |
 | VN-002 | [Kennel cabinet with sliding desk top](van/kennel-cabinet/) | van | v1 rebuilt from Onshape; v2 in progress |
 
-IDs: `BT-` boat · `SH-` shop / maker space · `EL-` electronics · `HM-` home.
+IDs: `BT-` boat · `SH-` shop / maker space · `EL-` electronics · `HM-` home · `VN-` van.

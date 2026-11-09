@@ -1,0 +1,747 @@
+{
+ "commands": [
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ph_w",
+    "expression": "83 mm",
+    "comment": "phone + case width. UNVERIFIED: 16 Pro Max is 77.6 bare; measure with case"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ph_h",
+    "expression": "168 mm",
+    "comment": "phone + case height. UNVERIFIED: 16 Pro Max is 163.0 bare"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ph_t",
+    "expression": "12 mm",
+    "comment": "puck face to screen (case + phone). UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "ph_dz",
+    "expression": "0 mm",
+    "comment": "phone centre above the puck axis (0 = adaptor centred on the case). UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "puck_t",
+    "expression": "18 mm",
+    "comment": "puck face to the back of the puck where the arm starts. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "arm_d",
+    "expression": "16 mm",
+    "comment": "ball-joint arm diameter where the clamp grips. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "clamp_l",
+    "expression": "12 mm",
+    "comment": "clamp length along the arm; must be shorter than the bare arm behind the puck. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "clamp_wall",
+    "expression": "5 mm",
+    "comment": "clamp ring wall"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "wall",
+    "expression": "2.4 mm",
+    "comment": "hood and scoop wall (6 perimeters at 0.4)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "twist_clr",
+    "expression": "4 mm",
+    "comment": "roof clearance outside the circle the phone corners sweep when twisting onto the Quad Lock"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "visor_d",
+    "expression": "35 mm",
+    "comment": "how far the roof reaches in front of the screen"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "roof_w",
+    "expression": "120 mm",
+    "comment": "roof width (sun shade)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "plen_gap",
+    "expression": "2 mm",
+    "comment": "gap between the plenum rim and the phone back: air leaves here and out the top"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "cable_w",
+    "expression": "12 mm",
+    "comment": "notch in the plenum floor for the charging cable"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "hose_id",
+    "expression": "15.9 mm",
+    "comment": "flexible hose ID (5/8 in silicone). UNVERIFIED: buy hose, then set"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "spig_l",
+    "expression": "18 mm",
+    "comment": "hose spigot length"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "inlet_x",
+    "expression": "-(ph_w/2 - 14 mm)",
+    "comment": "hose inlet across the plenum floor (-X = driver's right, toward the vent)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "spig_od",
+    "expression": "hose_id + 0.8 mm",
+    "comment": "spigot OD: hose stretches 0.8 mm"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "spig_bore",
+    "expression": "hose_id - 3.5 mm",
+    "comment": "spigot bore"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "y_bpf",
+    "expression": "-(puck_t + 1 mm)",
+    "comment": "derived: front face of the back plate (y = 0 is the puck face / phone back; +Y toward the driver)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "y_bpb",
+    "expression": "y_bpf - wall",
+    "comment": "derived: back face of the back plate"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "zb",
+    "expression": "ph_dz - ph_h/2 - wall",
+    "comment": "derived: underside of the plenum floor"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "r_tw",
+    "expression": "sqrt((ph_w/2)^2 + (ph_h/2 + ph_dz)^2) + twist_clr",
+    "comment": "derived: roof underside height = phone corner sweep radius + clearance"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "plen_d",
+    "expression": "-y_bpf - plen_gap",
+    "comment": "derived: plenum depth"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "cheek_z",
+    "expression": "sqrt(r_tw^2 - (roof_w/2 - wall)^2)",
+    "comment": "derived: lowest a roof cheek can reach and still clear the twist circle"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "BackPlate",
+    "body_name": "Hood",
+    "length": "ph_w + 2*wall",
+    "width": "wall",
+    "height": "r_tw - zb",
+    "center": [
+     "0",
+     "(y_bpf + y_bpb)/2",
+     "(r_tw + zb)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "RimR",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "wall",
+    "width": "plen_d",
+    "height": "r_tw - zb",
+    "center": [
+     "ph_w/2 + wall/2",
+     "(y_bpf - plen_gap)/2",
+     "(r_tw + zb)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "RimL",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "wall",
+    "width": "plen_d",
+    "height": "r_tw - zb",
+    "center": [
+     "-(ph_w/2 + wall/2)",
+     "(y_bpf - plen_gap)/2",
+     "(r_tw + zb)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "PlenumFloor",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "ph_w",
+    "width": "plen_d",
+    "height": "wall",
+    "center": [
+     "0",
+     "(y_bpf - plen_gap)/2",
+     "zb + wall/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "Roof",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "roof_w",
+    "width": "ph_t + visor_d - y_bpb",
+    "height": "wall",
+    "center": [
+     "0",
+     "(ph_t + visor_d + y_bpb)/2",
+     "r_tw + wall/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "CheekR",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "wall",
+    "width": "ph_t + visor_d - y_bpb",
+    "height": "r_tw - cheek_z",
+    "center": [
+     "roof_w/2 - wall/2",
+     "(ph_t + visor_d + y_bpb)/2",
+     "(r_tw + cheek_z)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "CheekL",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "wall",
+    "width": "ph_t + visor_d - y_bpb",
+    "height": "r_tw - cheek_z",
+    "center": [
+     "-(roof_w/2 - wall/2)",
+     "(ph_t + visor_d + y_bpb)/2",
+     "(r_tw + cheek_z)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "ExhaustSlot",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "length": "ph_w - 12 mm",
+    "width": "plen_d - 4 mm",
+    "height": "wall + 2 mm",
+    "center": [
+     "0",
+     "(y_bpf - plen_gap)/2",
+     "r_tw + wall/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "CableNotch",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "length": "cable_w",
+    "width": "plen_d + 1 mm",
+    "height": "wall + 2 mm",
+    "center": [
+     "0",
+     "(y_bpf - plen_gap)/2 + 0.5 mm",
+     "zb + wall/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "Spigot",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "diameter": "spig_od",
+    "height": "spig_l",
+    "base": [
+     "inlet_x",
+     "(y_bpf - plen_gap)/2",
+     "zb - spig_l"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "SpigotBore",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "diameter": "spig_bore",
+    "height": "spig_l + wall + 2 mm",
+    "base": [
+     "inlet_x",
+     "(y_bpf - plen_gap)/2",
+     "zb - spig_l - 1 mm"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "ClampRing",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "diameter": "arm_d + 2*clamp_wall",
+    "height": "clamp_l",
+    "base": [
+     "0",
+     "y_bpb",
+     "0"
+    ],
+    "axis": [
+     0,
+     -1,
+     0
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "ClampLug",
+    "operation": "join",
+    "targets": [
+     "Hood"
+    ],
+    "length": "14 mm",
+    "width": "clamp_l",
+    "height": "clamp_wall + 7 mm",
+    "center": [
+     "0",
+     "y_bpb - clamp_l/2",
+     "-(arm_d/2 + (clamp_wall + 7 mm)/2)"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "ArmHole",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "diameter": "arm_d",
+    "height": "clamp_l + wall + 2 mm",
+    "base": [
+     "0",
+     "y_bpb - clamp_l - 1 mm",
+     "0"
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "ClampSlit",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "length": "1.5 mm",
+    "width": "clamp_l + wall + 2 mm",
+    "height": "arm_d/2 + clamp_wall + 8 mm",
+    "center": [
+     "0",
+     "y_bpb - clamp_l/2 + wall/2",
+     "-(arm_d/2 + clamp_wall + 8 mm)/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "PinchBolt",
+    "operation": "cut",
+    "targets": [
+     "Hood"
+    ],
+    "diameter": "3.4 mm",
+    "height": "16 mm",
+    "base": [
+     "-8 mm",
+     "y_bpb - clamp_l/2",
+     "-(arm_d/2 + clamp_wall + 3 mm)"
+    ],
+    "axis": "X"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "vent_w",
+    "expression": "55 mm",
+    "comment": "vent opening width (inside the bezel). UNVERIFIED: measure"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "scoop_h",
+    "expression": "35 mm",
+    "comment": "how much of the vent the scoop covers, from the top edge of the opening down"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "scoop_d",
+    "expression": "30 mm",
+    "comment": "scoop depth out from the bezel"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "louvre_set",
+    "expression": "8 mm",
+    "comment": "how far the front of the louvres sits behind the bezel face. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "louvre_depth",
+    "expression": "10 mm",
+    "comment": "louvre blade depth front to back. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "louvre_gap",
+    "expression": "6 mm",
+    "comment": "clear gap between two louvres. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "tab_z",
+    "expression": "6 mm",
+    "comment": "top edge of the opening down to the centre of the louvre gap the clip tabs go into. UNVERIFIED"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "tab_w",
+    "expression": "10 mm",
+    "comment": "clip tab width"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "hook_h",
+    "expression": "1.5 mm",
+    "comment": "hook at the tab tip that snaps behind a louvre"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "scoop_x",
+    "expression": "-(roof_w/2 + 60 mm)",
+    "comment": "layout only: where the scoop sits beside the hood in the file"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "tab_t",
+    "expression": "louvre_gap - 0.4 mm",
+    "comment": "derived: tab thickness (slides into the gap)"
+   }
+  },
+  {
+   "command": "parameters.add",
+   "params": {
+    "name": "tab_l",
+    "expression": "louvre_set + louvre_depth + 2 mm",
+    "comment": "derived: tab length behind the bezel"
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "ScoopBlock",
+    "body_name": "VentScoop",
+    "length": "vent_w + 2*wall",
+    "width": "scoop_d",
+    "height": "scoop_h + 2*wall",
+    "center": [
+     "scoop_x",
+     "scoop_d/2",
+     "-scoop_h/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "ScoopHollow",
+    "operation": "cut",
+    "targets": [
+     "VentScoop"
+    ],
+    "length": "vent_w",
+    "width": "scoop_d - wall + 1 mm",
+    "height": "scoop_h",
+    "center": [
+     "scoop_x",
+     "(scoop_d - wall - 1 mm)/2",
+     "-scoop_h/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "ScoopSpigot",
+    "operation": "join",
+    "targets": [
+     "VentScoop"
+    ],
+    "diameter": "spig_od",
+    "height": "spig_l",
+    "base": [
+     "scoop_x + vent_w/2 - spig_od/2",
+     "(scoop_d - wall)/2",
+     "wall"
+    ]
+   }
+  },
+  {
+   "command": "solid.cylinder",
+   "params": {
+    "name": "ScoopBore",
+    "operation": "cut",
+    "targets": [
+     "VentScoop"
+    ],
+    "diameter": "spig_bore",
+    "height": "spig_l + wall + 2 mm",
+    "base": [
+     "scoop_x + vent_w/2 - spig_od/2",
+     "(scoop_d - wall)/2",
+     "-1 mm"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "TabL",
+    "operation": "join",
+    "targets": [
+     "VentScoop"
+    ],
+    "length": "tab_w + wall",
+    "width": "tab_l + 1 mm",
+    "height": "tab_t",
+    "center": [
+     "scoop_x - vent_w/2 - wall + (tab_w + wall)/2",
+     "-(tab_l - 1 mm)/2",
+     "-tab_z"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "TabR",
+    "operation": "join",
+    "targets": [
+     "VentScoop"
+    ],
+    "length": "tab_w + wall",
+    "width": "tab_l + 1 mm",
+    "height": "tab_t",
+    "center": [
+     "scoop_x + vent_w/2 + wall - (tab_w + wall)/2",
+     "-(tab_l - 1 mm)/2",
+     "-tab_z"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "HookL",
+    "operation": "join",
+    "targets": [
+     "VentScoop"
+    ],
+    "length": "tab_w + wall",
+    "width": "2 mm",
+    "height": "hook_h",
+    "center": [
+     "scoop_x - vent_w/2 - wall + (tab_w + wall)/2",
+     "-tab_l + 1 mm",
+     "-tab_z + tab_t/2 + hook_h/2"
+    ]
+   }
+  },
+  {
+   "command": "solid.box",
+   "params": {
+    "name": "HookR",
+    "operation": "join",
+    "targets": [
+     "VentScoop"
+    ],
+    "length": "tab_w + wall",
+    "width": "2 mm",
+    "height": "hook_h",
+    "center": [
+     "scoop_x + vent_w/2 + wall - (tab_w + wall)/2",
+     "-tab_l + 1 mm",
+     "-tab_z + tab_t/2 + hook_h/2"
+    ]
+   }
+  },
+  {
+   "command": "material.create",
+   "params": {
+    "name": "ASA",
+    "density_g_cm3": 1.07
+   }
+  },
+  {
+   "command": "material.assign",
+   "params": {
+    "bodies": [
+     "Hood",
+     "VentScoop"
+    ],
+    "material": "ASA"
+   }
+  }
+ ]
+}
